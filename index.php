@@ -23,8 +23,9 @@
 </head>
 
 <body >
-	<div class='container'>
-		<h2>Fast Menu ~</h2>
+	<div class='container main'>
+		<h2>Fast Menu</h2>
+
 		<button type="button" class="btn btn-primary btn-lg keypad">1</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">2</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">3</button>
@@ -34,6 +35,7 @@
 		<button type="button" class="btn btn-primary btn-lg keypad">7</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">8</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">9</button>
+		<div class="notif"></div>
 	</div>
 
 	<div id="footer">
@@ -41,5 +43,7 @@
 			<div class="text-muted pull-right">the fast menu project <a href="tables.php">next</a></div>
 		</div>
 	</div>
+
 </body>
+<script type='text/javascript' src='js/login.js'></script>
 </html>

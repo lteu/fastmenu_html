@@ -90,13 +90,55 @@
 	<div class="footer">
 		<div class="container">
 			<p class="muted credit">
-				<button type="button" class="btn btn-warning">manual</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialog">aggiungi</button>
 				<button type="button" class="btn btn-info">modifica</button>
-				<button type="button" class="btn btn-primary"><a href="menu.php">aggiungi</a></button>
 				<button type="button" class="btn btn-success"><a href="tables.php">sposta conto</a></button>
+				<button type="button" class="btn btn-danger">Chiudi</button>
 			</p>
 
 		</div>
 	</div>
+
+
+
+
+<!-- Dialog of contact -->
+<div id="dialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Aggiungi piatto manualemente</h4>
+			</div>
+			<div class="modal-body">
+					<div class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for='nomepiatto'>Piatto:</label>
+							<div class='col-sm-10'>
+								<input id='nomepiatto'  class='form-control' placeholder="Nome piatto" type='text'  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for='prezzopiatto'>Prezzo:</label>
+							<div class='col-sm-10'>
+								<input id='prezzopiatto'  class='form-control' placeholder="Prezzo piatto" type='text'  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for='notepiatto'>Nota:</label>
+							<div class='col-sm-10'>
+								<input id='notepiatto'  class='form-control' placeholder="ingredienti, grado cottura etc (Facoltativo)" type='text'  />
+							</div>
+						</div>
+					</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+				<button id='confermapiatto' type="button" class="btn btn-primary">Conferma</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
