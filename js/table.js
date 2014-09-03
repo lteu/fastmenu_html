@@ -135,27 +135,32 @@ function prezzototale(){
 
 function bindButtons(pid){
  
-  //abilita il pulsante di Cancella piatto
+  //clicca CANCELLA
 $("#cbutt_"+pid).click(function(){
- var btid = $(this).attr("id");
- var splitted = btid.split("_");
- var piattoid = splitted[1];
- call_cancellapiatto(piattoid);
-//alert(3)
-   //ajax call piatto id
+ call_cancellapiatto(pid);
  });
 
-//abilita il pulsante di Cancella piatto
+  //clicca CONFERMA
 $("#fbutt_"+pid).click(function(){
- var btid = $(this).attr("id");
- var splitted = btid.split("_");
- var piattoid = splitted[1];
  var parent = $(this).parent();
  var nota = $(parent).find("input").val();
- call_modificanota(nota,piattoid);
-   //ajax call id piatto e nota associata
-  // alert(nota);
+ call_modificanota(nota,pid);
  });
+
+  //text changed listener
+  $(".p_"+pid).find(".notainput").on("keyup", function(){
+    var wrapper = $(this).parent();
+    if ($(wrapper).hasClass("has-success")) {
+      $(wrapper).find(".glyphicon").remove();
+      $(wrapper).removeClass("has-success");
+    }
+    if (!$(wrapper).hasClass("has-warning")) {
+      $(wrapper).addClass("has-warning");
+      $(wrapper).addClass("has-feedback");
+      $(wrapper).append("<span class='glyphicon glyphicon-warning-sign form-control-feedback'></span>");
+    };
+
+})
 }
 
 
@@ -164,10 +169,15 @@ function aggiungipiattohtml(piattoid,piatto,prezzo,nota){
   var html = "<div class='panel-heading "+piattohtmid+"'>"
   +"<a data-toggle='collapse' data-parent='#accordion' href='#collapse"+piattohtmid+"'>"
   +" <h4 class='panel-title'>"+piatto+" - <span class='prezzosingolo'>"+prezzo+"</span>€"+"<div class='pull-right'>dettagli</div></h4> </a></div>"
-  +"<div id='collapse"+piattohtmid+"' class='collapse "+piattohtmid+"'><div class='panel-body'>"
-  +"<div class='list-group-item'><input class='form-control' type='text' placeholder='inserire una nota' value='"+nota+"'>"
-  +"<br /><button id='fbutt_"+piattoid+"' type='button' class='btn btn-primary buttconf'>Confermo Modifica</button>"
-  +"<button id='cbutt_"+piattoid+"' type='button' class='btn btn-danger pull-right buttcancella'>Cancella Piatto</button></div></div></div>";
+  +"<div id='collapse"+piattohtmid+"' class='collapse "+piattohtmid+"'>"
+  +"<div class='panel-body'>"
+  +"<div class='form-group'>"
+  +"<label class='sr-only'>srlabel</label>"
+  +"<input class='form-control notainput' type='text' placeholder='inserire una nota' value='"+nota+"'>"
+  +"</div>"
+  +"<button id='fbutt_"+piattoid+"' type='button' class='btn btn-primary buttconf'>Confermo Modifica</button>"
+  +"<button id='cbutt_"+piattoid+"' type='button' class='btn btn-danger pull-right buttcancella'>Cancella Piatto</button>"
+  +"</div></div>";
 //var html = "aaa";
 $(".panellopiatti").append(html);
 bindButtons(piattoid);

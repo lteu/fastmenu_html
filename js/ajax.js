@@ -162,7 +162,18 @@ function call_modificanota(nota,piattoid)
         },
         contentType: 'application/x-www-form-urlencoded',
         success: function(res) {
-            alert(res)
+            if (res == "ok") {
+                  var notainput = $(".p_"+piattoid).find(".notainput");
+                  var wrapper = $(notainput).parent();
+
+    if ($(wrapper).hasClass("has-warning")) {
+      $(wrapper).removeClass("has-warning");
+      $(wrapper).find(".glyphicon").remove();
+
+      $(wrapper).addClass("has-success");
+      $(wrapper).append("<span class='glyphicon glyphicon-ok form-control-feedback'></span>");
+    };
+            };
     },
     error: function(r) {
         alert("Error "+r.status+" on resource '"+this.url+"':\n"+r.statusText);

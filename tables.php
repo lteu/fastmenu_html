@@ -67,7 +67,7 @@ for ($i=0; $i < count($tables); $i++) {
 	<body >
 
 		<div class='container tablelist'>
-			<h2>Tables</h2>
+			<h2 class="text-center">Lista tavoli</h2>
 			<input class="form-control tablesearch" type="text" placeholder="Inseire ID tavolo per cercare">
 			<br />
 			<div class="tablePanel">

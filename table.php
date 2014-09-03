@@ -84,7 +84,11 @@ if ($stato == "occupato") {
 	<body >
 
 		<div class='container'>
-
+<div class='form-group has-warning has-feedback'>
+  <label class='sr-only'>srlabel</label>
+  <input type="text" class="form-control">
+  <span class='glyphicon glyphicon-warning-sign form-control-feedback'></span>
+</div>
 			<h2><div class="pull-left"><a href="tables.php"><button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button></a></div><div class="text-center">Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€</div></h2>
 			<div class="panel panel-default panellopiatti">
 			</div>
