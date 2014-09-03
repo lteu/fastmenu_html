@@ -28,6 +28,9 @@ $(function(){
     $(".butt_occupato").click(function(){
         reloadTables("occupato");
     })
+    $(".butt_tutti").click(function(){
+        reloadTables("all");
+    })
 
 })
 

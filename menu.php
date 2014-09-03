@@ -1,5 +1,7 @@
 <?php
 
+include_once("cgi-bin/com.configp.php");
+
 ?>
 
 <!DOCTYPE html>

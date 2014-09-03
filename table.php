@@ -1,17 +1,62 @@
 <?php
 
-$piatti = array(
-	array(1,"spaghetti al mare","8","vongole fresche, pesce crudo"),
-	array(2,"pasta al boscaiola","8","cotto, piselli, panna, pepe"),
-	array(3,"caffè shakerato","1"),
-	array(4,"espresso","1"),
-	array(5,"caffè macchiato","1"),
-	array(6,"carne al ferro","10","peperoncino salsa greca"),
-	array(7,"stinco al camomila","12","camomila, stinco di modena, aceto balsamico"),
-	array(8,"passetelle al brodo","6","pasta fatta a mano, brodo di vitello"),
-	array(9,"ravioli al granchio","8","ravioli grandi con ripieno di granchio"),
-	array(10,"torta alle carote","4")
-	);
+include_once("cgi-bin/com.configp.php");
+
+$_SESSION['tavolo'] = $_GET['table'];
+$idtavolo = $_GET['table'];
+
+//recuprra lista piatti
+$listapiatti = array();
+$query = " SELECT id, nome, prezzo, dettaglio FROM piatti";
+$result = mysql_query($query);
+if (!$result) {
+	die("errore SQL $query");
+} else {
+	while($row = mysql_fetch_row($result)){
+		$listapiatti[] = array($row[0], $row[1], $row[2],$row[3]);
+	}
+	
+}
+
+//recupera stato tavolo
+$query = " SELECT stato FROM tavoli WHERE id = $idtavolo ";
+$result = mysql_query($query);
+$row = mysql_fetch_row($result);
+$stato = $row[0];
+
+if ($stato == "occupato") {
+	$queryidconto = "SELECT id FROM conti WHERE stato = 'aperto' AND tavolo = '$idtavolo' ORDER BY time desc";
+	$resultconto = mysql_query($queryidconto);
+	if (!$resultconto) {
+		echo "$queryidconto";
+	}
+	$row = mysql_fetch_row($resultconto);
+	$idconto = $row[0];
+
+	//$piatti = array();
+	$msgpiatti = "";
+	$querypiatti = "SELECT id,piatto,prezzo,nota FROM ordini WHERE refConto = '$idconto' ";
+	$results = mysql_query($querypiatti);
+	while($row = mysql_fetch_row($results)){
+		//echo $row[1];
+		$msgpiatti .= $row[0].";".$row[1].";".$row[2].";".$row[3]."@";
+		//$piatti[] = array("id" => $row[0], "piatto" => $row[1], "prezzo" => $row[2],"nota" => $row[3]);
+	}
+	//echo "$idconto lla";
+}
+
+// $piatti = array(
+// 	array(1,"spaghetti al mare","8","vongole fresche, pesce crudo"),
+// 	array(2,"pasta al boscaiola","8","cotto, piselli, panna, pepe"),
+// 	array(3,"caffè shakerato","1"),
+// 	array(4,"espresso","1"),
+// 	array(5,"caffè macchiato","1"),
+// 	array(6,"carne al ferro","10","peperoncino salsa greca"),
+// 	array(7,"stinco al camomila","12","camomila, stinco di modena, aceto balsamico"),
+// 	array(8,"passetelle al brodo","6","pasta fatta a mano, brodo di vitello"),
+// 	array(9,"ravioli al granchio","8","ravioli grandi con ripieno di granchio"),
+// 	array(10,"torta alle carote","4")
+// 	);
 
 
 	?>
@@ -39,66 +84,32 @@ $piatti = array(
 	<body >
 
 		<div class='container'>
-			<h2>Ordini</h2>
-			<div>totale:80 euro</div>
 
-
-
+			<h2><div class="pull-left"><a href="tables.php"><button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button></a></div><div class="text-center">Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€</div></h2>
 			<div class="panel panel-default panellopiatti">
-
-				<div class="panel-heading">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">	
-						<h4 class="panel-title">
-							Pasta alle zucchine e gamberetti
-							<div class="pull-right">+</div>
-						</h4>
-					</a>
-				</div>
-
-				<div id="collapse1" class="collapse">
-					<div class="panel-body">
-						<div class="list-group-item">
-							#1 <span class="plate_name">richiesta</span> <div class="pull-right"><span class="price">operatore</span> 1</div> 
-							<div>pasta deve essere morbida</div>
-						</div>
-					</div><!-- cls panel body -->
-				</div><!-- cls panel collapse -->
-
-				<div class="panel-heading piattoxcz">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">	
-						<h4 class="panel-title">
-							Fegato al mantovano
-							<div class="pull-right">+</div>
-						</h4>
-					</a>
-				</div>
-
-				<div id="collapse3" class="collapse piattoxcz">
-					<div class="panel-body">
-						<div class="list-group-item">
-							<input class="form-control" type="text" placeholder="inserire una nota" value="piccante">
-							<br />
-							<button id="fbutt_piattoxcz" type="button" class="btn btn-primary buttconf">Confermo Modifica</button>
-							<button id="cbutt_piattoxcz" type="button" class="btn btn-danger pull-right buttcancella">Cancella Piatto</button>
-						</div>
-					</div><!-- cls panel body -->
-				</div><!-- cls panel collapse -->
 			</div>
 		</div>
 
 		<div class="footer">
 			<div class="container">
 				<p class="muted credit">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialog">Aggiungi</button>
-					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dialogSpostaConto"><a href="tables.php">Sposta conto</a></button>
-					<button type="button" class="btn btn-danger">Chiudi</button>
+					<button type="button" class="btn btn-success apbutt">Apri</button>
+					<button type="button" class="btn btn-primary funcbutt" data-toggle="modal" data-target="#dialog">Aggiungi</button>
+					<button type="button" class="btn btn-warning funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto"><a href="tables.php">Sposta conto</a></button>
+					<button type="button" class="btn btn-danger funcbutt cdbutt" data-toggle="modal" data-target="#dialogChiusura" >Chiudi</button>
 				</p>
 
 
 			</div>
 		</div>
 
+<!-- 
+**********************************
 
+			Dialoghi 
+
+**********************************
+-->
 
 
 		<!-- Dialogo per ordine -->
@@ -157,9 +168,8 @@ $piatti = array(
 						<div class="form-horizontal" role="form">
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for='nomepiatto'>Sposta a:</label>
-								<div class='col-sm-10'>
-								
-									<input id='tavolodestinazione'  class='form-control' placeholder="id tavolo" type='text'  />
+								<div class='col-sm-10 listatavoli'>
+								    
 									<div class="notif spostaNotif"></div>
 								</div>
 							</div>
@@ -169,15 +179,43 @@ $piatti = array(
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-						<button id='confermapiatto' type="button" class="btn btn-primary">Conferma</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="dialogChiusura" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Chiusura Conto</h4>
+					</div>
+					<div class="modal-body">
+						<h2>Siete sicuri di chiudere il conto?</h2>
+					
+							<h2 class="form-group">Totale:<span class="prezzototale"></span>€</h2>
+					
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+						<button id='confermaChiusura' type="button" class="btn btn-primary">Conferma</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
 	<script>
-	arraypiatti = <?php  echo json_encode($piatti); ?>;
+	arraypiatti = <?php  echo json_encode($listapiatti); ?>;
+	stato = <?php  echo json_encode($stato); ?>;
+	idconto = <?php  echo json_encode($idconto); ?>;
+	idtavolo = <?php  echo json_encode($idtavolo); ?>;
+	piattiltfomat = <?php  echo json_encode($msgpiatti); ?>;
+	//var xx = jQuery.parseJSON(piattijsonobj);
+	//var x = xx[0];
+	//alert(piattijsonobj[0]);
 	</script>
+	<script type='text/javascript' src='js/ajax.js'></script>
 	<script type='text/javascript' src='js/lib/typeahead.bundle.js'></script>
 	<script type='text/javascript' src='js/table.js'></script>
 	</html>

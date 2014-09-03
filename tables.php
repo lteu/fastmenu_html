@@ -1,17 +1,32 @@
 <?php
 
-$tables = array(
-	array(1,"libero"),
-	array(2,"occupato"),
-	array(3,"libero"),
-	array(4,"libero"),
-	array(5,"libero"),
-	array(6,"libero"),
-	array(7,"libero"),
-	array(8,"libero"),
-	array(9,"libero"),
-	array(10,"libero")
-	);
+include_once("cgi-bin/com.configp.php");
+
+$tables = array();
+
+$query = "SELECT id,stato FROM tavoli";
+$result = mysql_query($query);
+if ($result) {
+	while ($row = mysql_fetch_row($result)) {
+	    $tables[] = array($row[0],$row[1]); 
+	}
+}
+else{
+	echo "sql error $query";
+}
+
+// $tables = array(
+// 	array(1,"libero"),
+// 	array(2,"occupato"),
+// 	array(3,"libero"),
+// 	array(4,"libero"),
+// 	array(5,"libero"),
+// 	array(6,"libero"),
+// 	array(7,"libero"),
+// 	array(8,"libero"),
+// 	array(9,"libero"),
+// 	array(10,"libero")
+// 	);
 
 
 $tableshtml = "";
@@ -64,7 +79,11 @@ for ($i=0; $i < count($tables); $i++) {
 
 		<div class="footer">
 			<div class="container">
-				<p class="muted credit"><button type="button" class="btn btn-info butt_libero">libero</button><button type="button" class="btn btn-warning butt_occupato">occupato</button></p>
+				<p class="muted credit">
+					<button type="button" class="btn btn-info butt_libero">libero</button>
+					<button type="button" class="btn btn-warning butt_occupato">occupato</button>
+					<button type="button" class="btn btn-success butt_tutti">tutti</button>
+				</p>
 			</div>
 		</div>
 

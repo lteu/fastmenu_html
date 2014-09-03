@@ -1,5 +1,20 @@
 <?php
 
+include_once("cgi-bin/com.configp.php");
+
+$query = " SELECT nome FROM personali WHERE codice = 1234 ";
+$result = mysql_query($query);
+if ($result) {
+	 while ($row = mysql_fetch_row($result)) {
+    $ep = $row[0];
+    echo "$ep";
+}
+}
+else{
+	echo "sql error $query";
+}
+
+
 ?>
 
 <!DOCTYPE html>

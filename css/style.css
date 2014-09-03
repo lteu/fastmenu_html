@@ -192,7 +192,13 @@ button a,button a:hover{
   color: white;
 }
 
-/********OH**/
+.panel-heading a,.panel-heading a:hover{
+  text-decoration: none;
+  color: rgb(82,82,82);
+
+}
+
+/********OH AUTO COMPLETE CSS **/
 
 
 .tt-dropdown-menu {
