@@ -2,19 +2,6 @@
 
 include_once("cgi-bin/com.configp.php");
 
-$query = " SELECT nome FROM personali WHERE codice = 1234 ";
-$result = mysql_query($query);
-if ($result) {
-	 while ($row = mysql_fetch_row($result)) {
-    $ep = $row[0];
-    echo "$ep";
-}
-}
-else{
-	echo "sql error $query";
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -38,8 +25,8 @@ else{
 </head>
 
 <body >
-	<div class='container main'>
-		<h2>Fast Menu</h2>
+	<div class=''>
+		<h2 class="text-center">Fast Menu</h2>
 
 		<button type="button" class="btn btn-primary btn-lg keypad">1</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">2</button>
@@ -55,7 +42,7 @@ else{
 
 	<div id="footer">
 		<div class="container">
-			<div class="text-muted pull-right">the fast menu project <a href="tables.php">next</a></div>
+			<div class="text-muted text-center">Inserire pin per loggarsi oppure clicca <a href="tables.php">DEMO</a></div>
 		</div>
 	</div>
 

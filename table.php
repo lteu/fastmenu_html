@@ -84,12 +84,7 @@ if ($stato == "occupato") {
 	<body >
 
 		<div class='container'>
-<div class='form-group has-warning has-feedback'>
-  <label class='sr-only'>srlabel</label>
-  <input type="text" class="form-control">
-  <span class='glyphicon glyphicon-warning-sign form-control-feedback'></span>
-</div>
-			<h2><div class="pull-left"><a href="tables.php"><button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button></a></div><div class="text-center">Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€</div></h2>
+			<h3><div class="pull-left"><a href="tables.php"><button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button></a></div><div class="text-center">Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€</div></h3>
 			<div class="panel panel-default panellopiatti">
 			</div>
 		</div>
@@ -99,8 +94,8 @@ if ($stato == "occupato") {
 				<p class="muted credit">
 					<button type="button" class="btn btn-success apbutt">Apri</button>
 					<button type="button" class="btn btn-primary funcbutt" data-toggle="modal" data-target="#dialog">Aggiungi</button>
-					<button type="button" class="btn btn-warning funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto"><a href="tables.php">Sposta conto</a></button>
-					<button type="button" class="btn btn-danger funcbutt cdbutt" data-toggle="modal" data-target="#dialogChiusura" >Chiudi</button>
+					<button type="button" class="btn btn-warning funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto">Sposta</button>
+					<button type="button" class="btn btn-danger funcbutt" data-toggle="modal" data-target="#dialogChiusura" >Chiudi</button>
 				</p>
 
 

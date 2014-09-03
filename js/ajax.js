@@ -62,7 +62,7 @@ function call_listaliberi()
             var data = jQuery.parseJSON(res);
             var html = "";
             $(data).each(function(){
-             html += "<button type='button' class='btn btn-warning btn-lg keypad tavolodest'>"+this+"</button>"
+             html += "<button type='button' class='btn btn-info btn-lg keypad tavolodest'>"+this+"</button>"
          });
             $(".listatavoli").append(html);
             $(".tavolodest").click(function(){

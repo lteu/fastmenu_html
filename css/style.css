@@ -22,70 +22,18 @@ body {
 .container {
  max-width: 680px;
 }
-.content{
-  display: block;
-  height:100%;
-} 
-.content{
- margin-top: 20px;
- margin-bottom: 20px;
-}
 
-/* Global - Header
--------------------------------------------------- */
-/* components */
-
-
-.nav > li {
-  display: inline-block;
-}
-.nav > li + li {
-  margin-left: 10px;
-}
-.nav  li {
-  font-size: 16px;
-}
-
-
-/* Index - Intro
--------------------------------------------------- */
-
-
-.intro{
-  text-align: center;
-}
-.intro h1,h3{
-  margin-bottom: 30px;
-}
-.intro a, .intro strong{
-  text-decoration: none;
-  color: rgb(82,82,82);
-}
-.form-decision{
-  margin-top: 20px;
-}
-
- /* Global - Footers
--------------------------------------------------- 
-/* Fully personalised */
-.page_num{
-  margin-top: 20px;
-}
-
-#footer {
-  padding-top:20px;
-  height: 60px;
-}
-#footer .container{
-  background-image: url("../img/unibo.png");
-  background-repeat:no-repeat;
-}
 .text-muted {
   margin: 20px 0;
 }
 .text-muted a{
   text-decoration: none;
   color: #999999;
+}
+
+
+.butt_libero, .butt_occupato, .butt_tutti, .apbutt, .funcbutt{
+  width: 80px;
 }
 
 /* Global Devices
@@ -98,72 +46,32 @@ body {
     display: block;
     box-shadow: none;
   }
-  .head{
-     text-align: center;
-  }
-   .nav {
-    display: block;
-  text-align: center;
-  }
 }
 
 /* Landscape phones and portrait tablets and more */
 @media (min-width: 480px) {
-  .head{
-    margin-top: 20px;
-  }
-  .brand {
-    float: left;
-  }
-  .nav{
-    margin-top: 27px;
-  }
-  .nav {
-  float: right;
-  }
+
 }
 
 /* Portrait tablets and more*/
 @media (min-width: 992px) {
   
 }
-/* Global Componentes
--------------------------------------------------- */
-/* Componentes */
-
-.active  {
-  color: rgb(248,171,62);
-  font-weight: bold;
-}
-.logo{
-  width: 60px;
-}
-
-.smallnotice{
-  color: red;
-}
-
-.exp_result{
-
-  text-align: center;
-}
-
-#form1 .form-group{
-  margin-top: 30px;
-}
 
 /**
 ------------- login keypad
 **/
 
+input[type='text'],input[type='number'],textarea {font-size:16px;}
+
 .keypad {
     display: inline-block;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    width: calc(25% - 10px);
+    width: calc(30% - 10px);
     height: 100px;
-    margin: 5px;
-
+    margin-left: 13px;
+    margin-top: 8px;
 }
 /**
 ------------- table footer

@@ -28,7 +28,7 @@ $(function(){
 $(".apbutt").click(function(){
   call_apri();
 })
-$(".cdbutt").click(function(){
+$("#confermaChiusura").click(function(){
   call_chiudi();
 })
 
@@ -175,8 +175,8 @@ function aggiungipiattohtml(piattoid,piatto,prezzo,nota){
   +"<label class='sr-only'>srlabel</label>"
   +"<input class='form-control notainput' type='text' placeholder='inserire una nota' value='"+nota+"'>"
   +"</div>"
-  +"<button id='fbutt_"+piattoid+"' type='button' class='btn btn-primary buttconf'>Confermo Modifica</button>"
-  +"<button id='cbutt_"+piattoid+"' type='button' class='btn btn-danger pull-right buttcancella'>Cancella Piatto</button>"
+  +"<button id='fbutt_"+piattoid+"' type='button' class='btn btn-primary buttconf'>Conferma</button>"
+  +"<button id='cbutt_"+piattoid+"' type='button' class='btn btn-danger pull-right buttcancella'>Cancella</button>"
   +"</div></div>";
 //var html = "aaa";
 $(".panellopiatti").append(html);
