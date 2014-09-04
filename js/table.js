@@ -38,13 +38,42 @@ $(".spbutt").click(function(){
 
 
 $("#confermapiatto").click(function(){
+
+  //remove old
+  $("#nomepiatto").parent().removeClass("has-error");
+  $("#prezzopiatto").parent().removeClass("has-error");
+  $("#notapiatto").parent().removeClass("has-error");
+
+  //get val
   var piatto = $("#nomepiatto").val();
   var prezzo = $("#prezzopiatto").val();
   var nota = $("#notapiatto").val();
 
   var piattoid = Date.now()+makeid()+idtavolo;
 
-  call_ordina(piatto,prezzo,nota,piattoid);
+  var check = true;
+  
+  //html stuff
+  $(".err-explain span").remove();
+  if ($.trim(piatto)=="" || !validAlphaNumeric(piatto)) {
+    $("#nomepiatto").parent().addClass("has-error");
+    $(".exp1").append("<span class='bg-warning'>solo alpfa numerico</span>");
+    check = false;
+  }
+  if (!$.isNumeric(prezzo)) {
+    $("#prezzopiatto").parent().addClass("has-error");
+    $(".exp2").append("<span class='bg-warning'>solo numero</span>");
+    check = false;
+  }
+  if (!validAlphaNumeric(nota)) {
+    $("#notapiatto").parent().addClass("has-error");
+    $(".exp3").append("<span class='bg-warning'>solo alpha numerico</span>");
+    check = false;
+  }
+  
+  if(check){
+    call_ordina(piatto,prezzo,nota,piattoid);
+  }
 })
 
 // -----------------   autocomplete -----------------
@@ -184,4 +213,8 @@ bindButtons(piattoid);
 }
 
 
+function validAlphaNumeric(v) {
+    var r = new RegExp("^[a-zA-Z0-9àáèéíìòóùú'_ ]*$");
+    return (v.match(r) == null) ? false : true;
+}
 

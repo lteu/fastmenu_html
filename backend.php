@@ -89,18 +89,18 @@
 </div>
 <div id="collapse2" class="collapse">
     <div class="panel-body">
-        <form role="form">
+
           <div class="form-group">
-            <label for="nomepiatto">Nome Cameriere</label>
-            <input class="form-control" id="nomepiatto" placeholder="inserire un nome del piatto">
+            <label for="nomepersonale">Nome Cameriere</label>
+            <input class="form-control" id="nomepersonale" placeholder="inserire nome personale">
         </div>
         <div class="form-group">
-            <label for="idpiatto">PIN</label>
-            <input class="form-control" id="idpiatto" placeholder="inserire id nome del piatto">
+            <label for="pinpersonale">PIN</label>
+            <input class="form-control" id="pinpersonale" placeholder="inserire pin personale">
         </div>
         <button class="btn btn-danger">Elimina</button>
-        <button class="btn btn-primary pull-right">Aggiungi</button>
-    </form>
+        <button class="btn btn-primary pull-right aggiungiuser">Aggiungi</button>
+
 </div>
 </div>
 </div>

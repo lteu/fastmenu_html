@@ -5,6 +5,8 @@ include_once("cgi-bin/com.configp.php");
 $_SESSION['tavolo'] = $_GET['table'];
 $idtavolo = $_GET['table'];
 
+$operatore = $_SESSION['operatore'];
+
 //recuprra lista piatti
 $listapiatti = array();
 $query = " SELECT id, nome, prezzo, dettaglio FROM piatti";
@@ -84,20 +86,16 @@ if ($stato == "occupato") {
 <body >
 
 	<div class='container'>
-		<h3>
-			<div class="pull-left">
-				<a href="tables.php">
-					<button class="btn btn-default">
-						<span class="glyphicon glyphicon-arrow-left"></span>
-					</button>
-				</a>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header pull-left">
+				<a class="navbar-brand" href="tables.php"><span class="glyphicon glyphicon-arrow-left"></span> </a>
 			</div>
-			<div class="text-center">
-				Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€
-			</div>
-		</h3>
 
-		<hr />
+			<div class="navbar-brand pull-right">
+				Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€ | </span><?php echo $operatore; ?><span class="glyphicon glyphicon-user">
+			</div>
+		</nav>
+
 		
 		<div class="panel panel-default panellopiatti">
 		</div>
@@ -136,23 +134,26 @@ if ($stato == "occupato") {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for='nomepiatto'>Piatto:</label>
 						<div class='col-sm-10'>
-
-							<input id='nomepiatto'  class='form-control typeahead' placeholder="Nome piatto" type='text'  />
-
+							<input id='nomepiatto'  class='typeahead form-control ' placeholder="Nome piatto" type='text'  />
+							<p class="err-explain exp1"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for='prezzopiatto'>Prezzo:</label>
 						<div class='col-sm-10'>
 							<input id='prezzopiatto'  class='form-control' placeholder="Prezzo piatto" type='text'  />
+							<p class="err-explain exp2"></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for='notepiatto'>Nota:</label>
 						<div class='col-sm-10'>
 							<input id='notapiatto'  class='form-control' placeholder="ingredienti, grado cottura etc (Facoltativo)" type='text'  />
+							<p class="err-explain exp3"></p>
 						</div>
+
 					</div>
+
 					<div class="ricetta">
 
 					</div>

@@ -16,8 +16,8 @@ $(function(){
                 tablehtml = "<a href='table.php?table="+attualVal+"'><button type='button' class='btn btn-info btn-lg keypad'>"+attualVal+"</button></a>";
             }
 
-            $(".tablePanel a").remove();
-            $(".tablePanel").append(tablehtml);
+            $(".panellotavolo a").remove();
+            $(".panellotavolo").append(tablehtml);
         }else if (attualVal == "")
             reloadTables("all");
     });
@@ -48,6 +48,6 @@ function reloadTables(arg){
             tablehtml += "<a href='table.php?table="+indx+"'><button type='button' class='btn btn-info btn-lg keypad'>"+indx+"</button></a>";
         }
     }
-    $(".tablePanel a").remove();
-    $(".tablePanel").append(tablehtml);
+    $(".panellotavolo a").remove();
+    $(".panellotavolo").append(tablehtml);
 }

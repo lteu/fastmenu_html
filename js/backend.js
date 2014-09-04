@@ -1,6 +1,7 @@
 $(function(){
 
 call_piatti();
+
 $(".aggiungipiatto").click(function(){
     
     var nm = $("#nomepiatto").val();
@@ -10,13 +11,20 @@ $(".aggiungipiatto").click(function(){
     var ct = $("#categpiatto").val();
 
     call_aggiungipiatto(nm,pz,id,ig,ct);
-    //call_chiudi();
-    //alert(ct);
-})
+});
+
+$(".aggiungiuser").click(function(){
+    
+    var nom = $("#nomepersonale").val();
+    var pin = $("#pinpersonale").val();
+    call_newuser(nom,pin);
+    // call_listaliberi();
+});
 
 })
 
 
+//--------- functions -----------
 
 function call_aggiungipiatto(nm,pz,id,ig,ct)
 {   
@@ -39,6 +47,26 @@ function call_aggiungipiatto(nm,pz,id,ig,ct)
         }
     });
 }
+
+function call_newuser(nm,pin)
+{   
+  $.ajax({
+        type: 'POST',
+        url: "cgi-bin/aggiungiutente.php",
+        data: {
+            nm : nm,
+            pin : pin
+        },
+        contentType: 'application/x-www-form-urlencoded',
+        success: function(res) {
+  alert(res);
+        },
+        error: function(r) {
+            alert("Error "+r.status+" on resource '"+this.url+"':\n"+r.statusText);
+        }
+    });
+}
+
 
 function call_piatti(){
    $(".listapiatti div").remove();
