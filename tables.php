@@ -15,19 +15,7 @@ else{
 	echo "sql error $query";
 }
 
-// $tables = array(
-// 	array(1,"libero"),
-// 	array(2,"occupato"),
-// 	array(3,"libero"),
-// 	array(4,"libero"),
-// 	array(5,"libero"),
-// 	array(6,"libero"),
-// 	array(7,"libero"),
-// 	array(8,"libero"),
-// 	array(9,"libero"),
-// 	array(10,"libero")
-// 	);
-
+$operatore = $_SESSION['operatore'];
 
 $tableshtml = "";
 for ($i=0; $i < count($tables); $i++) { 
@@ -66,13 +54,30 @@ for ($i=0; $i < count($tables); $i++) {
 
 	<body >
 
+
 		<div class='container tablelist'>
-			<h2 class="text-center">Lista tavoli</h2>
+			<nav class="navbar navbar-default" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-arrow-left"></span></a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a><div class="text-center">Lista tavoli</div></a></li>
+                  <li><a><span class="glyphicon glyphicon-user"></span><?php echo $operatore; ?></a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </nav>
+
+			<hr />
 			<input class="form-control tablesearch" type="text" placeholder="Inseire ID tavolo per cercare">
 			<br />
 			<div class="tablePanel">
 				<?php echo $tableshtml; ?>
-
 		</div>
 		</div>
 
