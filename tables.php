@@ -55,14 +55,14 @@ for ($i=0; $i < count($tables); $i++) {
 <body >
 
 
-	<div class='container tablelist'>
+	<div class='container contentwrapper'>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="navbar-header pull-left">
 				<a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-arrow-left"></span> </a>
 			</div>
 
 			<div class="navbar-brand pull-right">
-				Lista tavoli | </span><?php echo $operatore; ?><span class="glyphicon glyphicon-user">
+				Lista tavoli | <span class="glyphicon glyphicon-user"></span> <?php echo $operatore; ?>
 			</div>
 		</nav>
 

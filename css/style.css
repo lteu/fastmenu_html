@@ -80,9 +80,6 @@ input[type='text'],input[type='number'],textarea {font-size:16px;}
 /**
 ------------- table footer
 **/
-.tablelist{
-  height: 800px; /*flexable!*/
-}
 
 .footer {
   position: fixed;
@@ -112,7 +109,7 @@ button a,button a:hover{
 
 
 /***** get rid from covering by sticky footer **/
-.panellotavolo, .panellopiatti{
+.contentwrapper{
   padding-bottom:60px; 
 } 
 

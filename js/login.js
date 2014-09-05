@@ -2,18 +2,29 @@ $(function(){
     clickcount = 0;
     seq = "";
 
-    $(".loginkeypad button").click(function(){
+    $(".pinremove").hide();
+    $(".pinremove").click(function(){
+        $(".pinremove").hide();
+        seq = "";
+        clickcount = 0;
+        $(".notif .pinspan").remove();
+    })
+
+    $(".keypad").click(function(){
         var num = $(this).text();
         seq += num+"";
         clickcount ++;
 
-        //alert(1)
+        if (!$(".pinremove").is(':visible')) {
+            $(".pinremove").show();
+        };
 
         $(".notif .pinspan").remove();
         $(".notif").append("<span class='pinspan'>"+seq+"</span>");
         $(".notif .resspan").remove();
 
         if (clickcount == 4) {
+            $(".pinremove").hide();
 
             //alert(seq)
             callLogin(seq);

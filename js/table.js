@@ -19,7 +19,7 @@ $(function(){
 
 
   if(stato =="libero"){
-    $(".funcbutt").hide();
+    $(".fgroup").hide();
   }else{
     $(".apbutt").hide();
   }

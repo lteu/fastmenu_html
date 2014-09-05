@@ -27,7 +27,7 @@ include_once("cgi-bin/com.configp.php");
 <body >
 	<div class='container loginkeypad'>
 		<h2 class="text-center">Fast Menu</h2>
-		<p class="form-control-static notif text-center">PIN: </p>
+		<p class="form-control-static text-center">PIN:<span class="notif"></span> <button class="btn btn-default btn-xs pinremove"><span class="glyphicon glyphicon-remove"></span></button></p>
 		<button type="button" class="btn btn-primary btn-lg keypad">1</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">2</button>
 		<button type="button" class="btn btn-primary btn-lg keypad">3</button>

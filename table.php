@@ -85,14 +85,14 @@ if ($stato == "occupato") {
 
 <body >
 
-	<div class='container'>
+	<div class='container contentwrapper'>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="navbar-header pull-left">
 				<a class="navbar-brand" href="tables.php"><span class="glyphicon glyphicon-arrow-left"></span> </a>
 			</div>
 
 			<div class="navbar-brand pull-right">
-				Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€ | </span><?php echo $operatore; ?><span class="glyphicon glyphicon-user">
+				Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€ | <span class="glyphicon glyphicon-user"> </span> <?php echo $operatore; ?>
 			</div>
 		</nav>
 
@@ -104,12 +104,27 @@ if ($stato == "occupato") {
 	<div class="footer">
 		<div class="container">
 			<p class="muted credit">
-				<button type="button" class="btn btn-success apbutt">Apri</button>
-				<button type="button" class="btn btn-primary funcbutt" data-toggle="modal" data-target="#dialog">Aggiungi</button>
-				<button type="button" class="btn btn-warning funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto">Sposta</button>
-				<button type="button" class="btn btn-danger funcbutt" data-toggle="modal" data-target="#dialogChiusura" >Chiudi</button>
+				<div class="btn-toolbar">
+					<button type="button" class="btn btn-success apbutt">Apri</button>
+					<div class="btn-group fgroup">
+						<button type="button" class="btn btn-default btn-warning ">
+							<span class="glyphicon glyphicon-cutlery"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-warning funcbutt" data-toggle="modal" data-target="#dialog">Aggiungi</button>
+					</div>
+
+					<div class="btn-group fgroup">
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-off"></span>
+						</button>
+						<button type="button" class="btn btn-default funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto">Sposta</button>
+						<button type="button" class="btn btn-default funcbutt" data-toggle="modal" data-target="#dialogChiusura">Chiudi</button>
+					</div>
+				</div>
+
 			</p>
 		</div>
+
 	</div>
 
 <!-- 

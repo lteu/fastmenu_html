@@ -15,7 +15,7 @@ function call_apri()
         success: function(res) {
             var splitted = res.split(";");
             if (splitted[0] == "ok") {
-                $(".funcbutt").show();
+                $(".fgroup").show();
                 $(".apbutt").hide();
                 idconto = splitted[1];
             }else{
