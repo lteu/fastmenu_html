@@ -30,7 +30,8 @@ $(".apbutt").click(function(){
   $('#dialogCoperto').modal('show');
 })
 $("#confermaChiusura").click(function(){
-  call_chiudi();
+  var totale =parseFloat($(".prezzototale:first").text()); 
+  call_chiudi(totale);
 })
 
 $(".spbutt").click(function(){

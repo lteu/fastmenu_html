@@ -109,7 +109,7 @@ if ($stato == "occupato") {
 			</div>
 
 			<div class="navbar-brand pull-right">
-				Tavolo <?php echo $idtavolo; ?> - totale <span class="prezzototale">0</span>€ | <span class="glyphicon glyphicon-user"> </span> <?php echo $operatore; ?>
+				Tav <?php echo $idtavolo; ?> -  <span class="prezzototale">0</span>€ | <span class="glyphicon glyphicon-user"> </span> <?php echo $operatore; ?>
 			</div>
 		</nav>
 
@@ -140,9 +140,7 @@ if ($stato == "occupato") {
 					</div>
 
 					<div class="btn-group fgroup">
-						<button type="button" class="btn btn-default">
-							<span class="glyphicon glyphicon-off"></span>
-						</button>
+
 						<button type="button" class="btn btn-default funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto">Sposta</button>
 						<button type="button" class="btn btn-default funcbutt" data-toggle="modal" data-target="#dialogChiusura">Chiudi</button>
 					</div>
@@ -168,7 +166,7 @@ if ($stato == "occupato") {
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Aggiungi piatto manualemente</h4>
+				<h4 class="modal-title">Aggiungi piatto</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-horizontal" role="form">

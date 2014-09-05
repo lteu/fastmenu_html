@@ -27,13 +27,16 @@ function call_apri()
         }
     });
 }
-function call_chiudi()
+function call_chiudi(totale)
 {   
+
     $.ajax({
         type: 'POST',
         url: "cgi-bin/tavolochiudi.php",
         data:{
-            conto:idconto
+            conto:idconto,
+            totale:totale
+
         },
         contentType: 'application/x-www-form-urlencoded',
         success: function(res) {

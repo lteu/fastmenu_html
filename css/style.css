@@ -47,7 +47,7 @@ body {
     box-shadow: none;
   }
   #nomepiatto{
-    width: 340px;
+    width: 260px;
   }
 }
 
@@ -66,7 +66,7 @@ body {
 ------------- login keypad
 **/
 
-input[type='text'],input[type='number'],textarea {font-size:16px;}
+input[type='text'],input[type='number'],textarea,select {font-size:16px;}
 
 .keypad {
     display: inline-block;
@@ -112,6 +112,12 @@ button a,button a:hover{
 .contentwrapper{
   padding-bottom:60px; 
 } 
+
+/**title content for ordered piatti */
+.titlecontent{
+  width: 20px;
+  overflow: hidden;
+}
 
 /********OH AUTO COMPLETE CSS **/
 
