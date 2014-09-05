@@ -2,6 +2,9 @@
 
 include_once("cgi-bin/com.configp.php");
 
+$coperto = 3;
+$copertohtml = "value = '$coperto' ";
+
 $_SESSION['tavolo'] = $_GET['table'];
 $idtavolo = $_GET['table'];
 
@@ -16,6 +19,19 @@ if (!$result) {
 } else {
 	while($row = mysql_fetch_row($result)){
 		$listapiatti[] = array($row[0], $row[1], $row[2],$row[3]);
+	}
+	
+}
+
+//recuprra lista piatti popolari
+$piattipop = "";
+$query = "SELECT piatto, count(*) FROM ordini GROUP BY piatto ORDER BY 2 DESC LIMIT 5";
+$result = mysql_query($query);
+if (!$result) {
+	die("errore SQL $query");
+} else {
+	while($row = mysql_fetch_row($result)){
+		$piattipop .= "<button type='button' class='btn btn-default btn-sm'>".$row[0]."</button>";
 	}
 	
 }
@@ -86,6 +102,7 @@ if ($stato == "occupato") {
 <body >
 
 	<div class='container contentwrapper'>
+
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="navbar-header pull-left">
 				<a class="navbar-brand" href="tables.php"><span class="glyphicon glyphicon-arrow-left"></span> </a>
@@ -96,8 +113,17 @@ if ($stato == "occupato") {
 			</div>
 		</nav>
 
-		
+		<div class="servizio-wrapper">
+				<span class="personehtm">0</span> persone
+				<span class="glyphicon glyphicon-remove"></span>
+				coperto <?php echo $coperto;?> € <span class="copertohtm"></span> = <span class="prezzosingolo">0</span> €
+
+				<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#dialogCoperto">
+					<span class="glyphicon glyphicon-refresh"></span>
+				</button>
+		</div>
 		<div class="panel panel-default panellopiatti">
+			
 		</div>
 	</div>
 
@@ -166,11 +192,13 @@ if ($stato == "occupato") {
 							<input id='notapiatto'  class='form-control' placeholder="ingredienti, grado cottura etc (Facoltativo)" type='text'  />
 							<p class="err-explain exp3"></p>
 						</div>
-
 					</div>
 
 					<div class="ricetta">
+					</div>
 
+					<div class="piattipop">
+						<?php echo $piattipop; ?>
 					</div>
 				</div>
 			</div>
@@ -231,6 +259,47 @@ if ($stato == "occupato") {
 		</div>
 	</div>
 </div>
+
+<div id="dialogCoperto" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Numero di persone e coperto</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+						<label class="col-sm-2 control-label" for='numpersone'>Persone:</label>
+						<div class='col-sm-10'>
+							<select id='numpersone' class="form-control">
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for='prezzocoperto'>Coperto:</label>
+						<div class='col-sm-10'>
+							<input id='prezzocoperto'  class='form-control' placeholder="Prezzo piatto" <?php echo $copertohtml ?> type='text'  />
+						</div>
+					</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				<button id='confermaCoperto' type="button" class="btn btn-primary">Conferma</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </body>
 <script>
 arraypiatti = <?php  echo json_encode($listapiatti); ?>;
@@ -238,6 +307,7 @@ stato = <?php  echo json_encode($stato); ?>;
 idconto = <?php  echo json_encode($idconto); ?>;
 idtavolo = <?php  echo json_encode($idtavolo); ?>;
 piattiltfomat = <?php  echo json_encode($msgpiatti); ?>;
+
 	//var xx = jQuery.parseJSON(piattijsonobj);
 	//var x = xx[0];
 	//alert(piattijsonobj[0]);

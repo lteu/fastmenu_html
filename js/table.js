@@ -23,10 +23,11 @@ $(function(){
   }else{
     $(".apbutt").hide();
   }
-//buttons apertura e chiusura
 
+//buttons apertura e chiusura
 $(".apbutt").click(function(){
   call_apri();
+  $('#dialogCoperto').modal('show');
 })
 $("#confermaChiusura").click(function(){
   call_chiudi();
@@ -36,7 +37,23 @@ $(".spbutt").click(function(){
   call_listaliberi();
 })
 
+$(".piattipop button").click(function(){
+  var piatto = $(this).text();
+  $("#nomepiatto").val(piatto);
+  loadPiatto(piatto);
+})
 
+
+$("#confermaCoperto").click(function(){
+  var p = $("#numpersone").val();
+  var c = $("#prezzocoperto").val();
+  $(".personehtm").text(p);
+  $(".copertohtm").text(c);
+  var product = p*c;
+  $(".prezzosingolo").text(product);
+  $('#dialogCoperto').modal('hide');
+
+})
 $("#confermapiatto").click(function(){
 
   //remove old
@@ -121,25 +138,26 @@ $('.typeahead').typeahead({
 
 $('.typeahead').bind("typeahead:selected", function(obj, datum, name) {
   var piatto = $(this).val();
-
-  for (var i = 0; i < arraypiatti.length; i++) {
-    if(piatto == arraypiatti[i][1]){
-      var prezzo =   arraypiatti[i][2];
-      $("#prezzopiatto").val(prezzo);
-
-      var ingre =   arraypiatti[i][3];
-      $(".ricetta span").remove();
-      if (ingre != undefined) {
-
-        $(".ricetta").append("<span>ingredienti: "+ingre+"</span>");
-      }
-    }
-       //states.push("aa")
-     }
+  loadPiatto(piatto);
    });
 
 
 })
+
+function loadPiatto(piatto){
+    for (var i = 0; i < arraypiatti.length; i++) {
+    if(piatto == arraypiatti[i][1]){
+      var prezzo =   arraypiatti[i][2];
+      $("#prezzopiatto").val(prezzo);
+
+      $(".ricetta span").remove();
+      var ingre =   arraypiatti[i][3];
+      if (ingre != undefined && $.trim(ingre) != "") {
+        $(".ricetta").append("<span>ingredienti: "+ingre+"</span>");
+      }
+    }
+     }
+}
 
 function makeid()
 {
@@ -211,6 +229,8 @@ function aggiungipiattohtml(piattoid,piatto,prezzo,nota){
 $(".panellopiatti").append(html);
 bindButtons(piattoid);
 }
+
+
 
 
 function validAlphaNumeric(v) {
