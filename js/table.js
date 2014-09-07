@@ -177,7 +177,7 @@ function prezzototale(){
   $(".prezzosingolo").each(function(){
     costo += parseFloat($(this).text());
   });
-  $(".prezzototale").text(costo);
+  $(".prezzototale").text(costo.toFixed(2));
 }
 
 
