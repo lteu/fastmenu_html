@@ -148,7 +148,7 @@ if ($stato == "occupato") {
 					<div class="btn-group fgroup">
 
 						<button type="button" class="btn btn-default funcbutt spbutt" data-toggle="modal" data-target="#dialogSpostaConto">Sposta</button>
-						<button type="button" class="btn btn-default funcbutt" data-toggle="modal" data-target="#dialogChiusura">Chiudi</button>
+						<button type="button" class="btn btn-default funcbutt" data-toggle="modal" data-target="#dialogChiusura">Paga</button>
 					</div>
 				</div>
 
