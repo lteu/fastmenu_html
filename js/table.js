@@ -46,6 +46,7 @@ $(".piattipop button").click(function(){
 
 
 $("#confermaCoperto").click(function(){
+
   var p = $("#numpersone").val();
   var c = $("#prezzocoperto").val();
   $(".personehtm").text(p);
@@ -53,7 +54,7 @@ $("#confermaCoperto").click(function(){
   var product = p*c;
   $(".prezzosingolo").text(product);
   $('#dialogCoperto').modal('hide');
-
+  call_aggiornaclienti(p);
 })
 $("#confermapiatto").click(function(){
 

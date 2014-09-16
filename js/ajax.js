@@ -184,3 +184,23 @@ function call_modificanota(nota,piattoid)
     });
 }
 
+//
+function call_aggiornaclienti(nclienti)
+{   
+
+    $.ajax({
+        type: 'POST',
+        url: "cgi-bin/tavoloclienti.php",
+        data: {
+            nclienti: nclienti
+        },
+        contentType: 'application/x-www-form-urlencoded',
+        success: function(res) {
+            //alert(res)
+            
+    },
+    error: function(r) {
+        alert("Error "+r.status+" on resource '"+this.url+"':\n"+r.statusText);
+    }
+    });
+}

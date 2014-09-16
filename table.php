@@ -2,6 +2,7 @@
 
 include_once("cgi-bin/com.configp.php");
 
+//recupera paramteri
 $coperto = 3;
 $copertohtml = "value = '$coperto' ";
 
@@ -43,13 +44,18 @@ $row = mysql_fetch_row($result);
 $stato = $row[0];
 
 if ($stato == "occupato") {
-	$queryidconto = "SELECT id FROM conti WHERE stato = 'aperto' AND tavolo = '$idtavolo' ORDER BY time desc";
+	$queryidconto = "SELECT id,clienti FROM conti WHERE stato = 'aperto' AND tavolo = '$idtavolo' ORDER BY time desc";
 	$resultconto = mysql_query($queryidconto);
 	if (!$resultconto) {
 		echo "$queryidconto";
 	}
 	$row = mysql_fetch_row($resultconto);
 	$idconto = $row[0];
+	$nclienti = $row[1];
+
+	$coperti = $nclienti * $coperto;
+
+	$_SESSION['idconto'] = $idconto;
 
 	//$piatti = array();
 	$msgpiatti = "";
@@ -114,9 +120,9 @@ if ($stato == "occupato") {
 		</nav>
 
 		<div class="servizio-wrapper">
-				<span class="personehtm">0</span> persone
+				<span class="personehtm"><?php echo $nclienti;?></span> persone
 				<span class="glyphicon glyphicon-remove"></span>
-				coperto <?php echo $coperto;?> € <span class="copertohtm"></span> = <span class="prezzosingolo">0</span> €
+				coperto <?php echo $coperto;?> € <span class="copertohtm"></span> = <span class="prezzosingolo"><?php echo $coperti;?></span> €
 
 				<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#dialogCoperto">
 					<span class="glyphicon glyphicon-refresh"></span>
